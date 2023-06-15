@@ -28,7 +28,6 @@ prepare() {
 
 build() {
     make build
-    bash ./rename-keyring.sh
 }
 
 check() {

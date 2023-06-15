@@ -6,7 +6,7 @@ KEYRING_TRUSTED_FILE=$(KEYRING_PREFIX)-trusted
 BUILD_DIR ?= build
 
 SOURCES=$(shell find keyring -type f)
-ARCHLINUX_KEYRING_SRC ?= src/archlinux-keyring
+ARCHLINUX_KEYRING_SRC ?= archlinux-keyring
 
 build: $(SOURCES)
 	$(ARCHLINUX_KEYRING_SRC)/keyringctl -v $(BUILD_DIR)

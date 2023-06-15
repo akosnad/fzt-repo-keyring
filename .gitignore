@@ -1,3 +1,6 @@
 build/
 src/
 archlinux-keyring/
+pkg/
+*.tar.zst
+*.tar.zst.sig

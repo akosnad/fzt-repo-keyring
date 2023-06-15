@@ -12,8 +12,8 @@ install=$pkgname.install
 depends=('pacman')
 makedepends=('git' 'python' 'sequoia-sq' 'pkgconf' 'systemd')
 checkdepends=('python-coverage' 'python-pytest')
-source=("archlinux-keyring::git+https://gitlab.archlinux.org/archlinux/archlinux-keyring.git#tag=${_tag}?signed")
-sha256sums=('SKIP')
+source=("archlinux-keyring::git+https://gitlab.archlinux.org/archlinux/archlinux-keyring.git#tag=${_tag}?signed" "local://Makefile" "local://rename-keyring.sh")
+sha256sums=('SKIP' 'SKIP' 'SKIP')
 validpgpkeys=('02FD1C7A934E614545849F19A6234074498E9CEE'  # Christian Hesse <eworm@archlinux.org>
               'C7E7849466FE2358343588377258734B41C31549'  # David Runge <dvzrv@archlinux.org>
               '4AA4767BBC9C4B1D18AE28B77F2D434B9741E8AC'  # Pierre Schmitz <pierre@archlinux.org>
@@ -22,8 +22,13 @@ validpgpkeys=('02FD1C7A934E614545849F19A6234074498E9CEE'  # Christian Hesse <ewo
               'E240B57E2C4630BA768E2F26FC1B547C8D8172C8'  # Levente Polyak <anthraxx@archlinux.org>
               'C100346676634E80C940FB9E9C02FF419FECBE16') # Morten Linderud <foxboron@archlinux.org>
 
+prepare() {
+    cp -ar ${startdir}/keyring ${srcdir}
+}
+
 build() {
     make build
+    bash ./rename-keyring.sh
 }
 
 check() {
